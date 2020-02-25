@@ -1,0 +1,39 @@
+server:
+  port: 18081
+spring:
+  application:
+    name: goods
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.211.132:3306/changgou_goods?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 123456
+  redis:
+    host: 192.168.211.132
+eureka:
+  client:
+    service-url:
+      #单机连接方式
+      #defaultZone: http://127.0.0.1:7001/eureka
+      #集群连接方式
+      defaultZone: http://eureka-server1:8761/eureka/,http://eureka-server2:8762/eureka/,http://eureka-server3:8763/eureka/
+  instance:
+    prefer-ip-address: true
+feign:
+  hystrix:
+    enabled: true
+# mybatis配置，使用通用Mapper后可以不配置
+#mybatis:
+#  configuration:
+#    #开启驼峰命名
+#    map-underscore-to-camel-case: true
+#  mapper-locations: classpath:mapper/*Mapper.xml
+#  type-aliases-package: com.changgou.goods.pojo
+logging:
+  level:
+    com:
+      changgou:
+        goods:
+          dao: debug
+
+
